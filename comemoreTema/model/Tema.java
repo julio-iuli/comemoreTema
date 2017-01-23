@@ -1,17 +1,26 @@
 package model;
 
+import javax.swing.JFormattedTextField;
+
 public class Tema {
 
-	private String nomeTema,descricaoTema,dataTema,imagenTema;
-	private boolean generoTema,statusTema;
+	private String nomeTema,descricaoTema,imagenTema;
+	private JFormattedTextField dataTema;
+	private String generoTema,statusTema;
 	private double precoTema;
 	
-	public Tema(String nomeTema, String descricaoTema, String dataTema, String imagenTema, boolean generoTema,
-			boolean statusTema, double precoTema) {
+	public Tema(){
+		
+	}
+	
+
+	public Tema(String nomeTema, String descricaoTema, String imagenTema, JFormattedTextField dataTema,
+			String generoTema, String statusTema, double precoTema) {
+		super();
 		this.nomeTema = nomeTema;
 		this.descricaoTema = descricaoTema;
-		this.dataTema = dataTema;
 		this.imagenTema = imagenTema;
+		this.dataTema = dataTema;
 		this.generoTema = generoTema;
 		this.statusTema = statusTema;
 		this.precoTema = precoTema;
@@ -33,12 +42,12 @@ public class Tema {
 		this.descricaoTema = descricaoTema;
 	}
 
-	public String getDataTema() {
+	public JFormattedTextField getDataTema() {
 		return dataTema;
 	}
 
-	public void setDataTema(String dataTema) {
-		this.dataTema = dataTema;
+	public void setDataTema(JFormattedTextField jFormattedTextField) {
+		this.dataTema = jFormattedTextField;
 	}
 
 	public String getImagenTema() {
@@ -49,19 +58,19 @@ public class Tema {
 		this.imagenTema = imagenTema;
 	}
 
-	public boolean isGeneroTema() {
+	public String isGeneroTema() {
 		return generoTema;
 	}
 
-	public void setGeneroTema(boolean generoTema) {
+	public void setGeneroTema(String generoTema) {
 		this.generoTema = generoTema;
 	}
 
-	public boolean isStatusTema() {
+	public String isStatusTema() {
 		return statusTema;
 	}
 
-	public void setStatusTema(boolean statusTema) {
+	public void setStatusTema(String statusTema) {
 		this.statusTema = statusTema;
 	}
 

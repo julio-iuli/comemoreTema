@@ -1,23 +1,24 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import org.jdatepicker.JDatePicker;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import org.jdatepicker.impl.JDatePickerImpl;
 
-import javax.swing.JFrame;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
+import model.Tema;
+import model.TemaDAO;
+
 
 public class AppTema extends JFrame implements ActionListener{
 
@@ -27,6 +28,7 @@ public class AppTema extends JFrame implements ActionListener{
 	private JRadioButton rdbativo,rdbinativo,rdbmasculino,rdbfeminino,rdbindefinido;
 	private JButton btnsalvar,btncancelar,btnlistar,btnimagen;
 	private JDatePickerImpl dataTema;
+	private ButtonGroup grupo;
 	
 	
 	
@@ -52,14 +54,22 @@ public class AppTema extends JFrame implements ActionListener{
 		lbldescricaoTema.setBounds(1,60,110,20);
 		txtdescricaoTema = new JTextArea(50,50);
 		txtdescricaoTema.setBounds(115,35,460,80);
+		
+		//group do radio button
 		//status do tema
+		
 		lblstatusTema = new JLabel("Status");
 		lblstatusTema.setBounds(40,120,40,20);
 		rdbativo = new JRadioButton("Ativo");
 		rdbativo.setBounds(1,140,60,20);
 		rdbinativo = new JRadioButton("Inativo");
 		rdbinativo.setBounds(57,140,70,20);
+		grupo = new ButtonGroup();
+		grupo.add(rdbativo);
+		grupo.add(rdbinativo);
+		
 		//genero
+		
 		lblgeneroTema = new JLabel("Gênero");
 		lblgeneroTema.setBounds(230,120,50,20);
 		rdbmasculino = new JRadioButton("Masculino");
@@ -68,11 +78,21 @@ public class AppTema extends JFrame implements ActionListener{
 		rdbfeminino.setBounds(220,140,85,20);
 		rdbindefinido = new JRadioButton("Indefinido");
 		rdbindefinido.setBounds(305,140,90,20);
+		grupo = new ButtonGroup();
+		grupo.add(rdbmasculino);
+		grupo.add(rdbfeminino);
+		grupo.add(rdbindefinido);
+		
 		//datapicker
 		lbldataTema = new JLabel("Data da Compra");
 		lbldataTema.setBounds(430,120,120,20);
 		dataTema = JulioDatePicker.criar(1980,true);
 		dataTema.setBounds(410,140,150,30);
+		lblpreco = new JLabel("Preço do Tema");
+		lblpreco.setBounds(440,175,120,20);
+		txtpreco = new JTextField();
+		txtpreco.setBounds(410,200,155,20);
+				
 		//botoes
 		btnsalvar = new JButton("Salvar");
 		btnsalvar.setBounds(1,200,80,40);
@@ -98,7 +118,7 @@ public class AppTema extends JFrame implements ActionListener{
 		add(lbldescricaoTema);add(txtdescricaoTema);
 		add(lblstatusTema);add(rdbativo);add(rdbinativo);
 		add(lblgeneroTema);add(rdbmasculino);add(rdbfeminino);add(rdbindefinido);
-		add(lbldataTema);add(dataTema);
+		add(lbldataTema);add(dataTema);add(lblpreco);add(txtpreco);
 		add(btnsalvar);add(btncancelar);add(btnimagen);add(btnlistar);
 		
 		
@@ -116,8 +136,32 @@ public class AppTema extends JFrame implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent clique) {
+		if(btnsalvar == clique.getSource()){
+			Tema temaClique = new Tema();
+			temaClique.setNomeTema(txtnomeTema.getText());
+			temaClique.setDescricaoTema(txtdescricaoTema.getText());
+			temaClique.setDataTema(dataTema.getJFormattedTextField());
+			temaClique.setStatusTema(rdbativo.getText());
+			temaClique.setStatusTema(rdbinativo.getText());
+			temaClique.setGeneroTema(rdbmasculino.getText());
+			temaClique.setGeneroTema(rdbfeminino.getText());
+			temaClique.setImagenTema(btnimagen.getText());
+			temaClique.setPrecoTema(Double.parseDouble(txtpreco.getText()));
+			try{
+			TemaDAO dao = new TemaDAO();
+			dao.inserir(temaClique);
+			JOptionPane.showConfirmDialog(null,"Gravado com Sucesso");
+			}
+			catch (SQLException e){
+				JOptionPane.showConfirmDialog(null,"Erro ao Gravar");
+				e.printStackTrace();
+				
+			}
+			
+			
+		}
+		
 		
 	}
 	

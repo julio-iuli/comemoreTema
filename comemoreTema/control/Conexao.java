@@ -18,7 +18,7 @@ public class Conexao {
 
 	public Conexao() throws SQLException {
 
-		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore", "root", "root");																										
+		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:127.0.0.1:3306/comemore", "root", "root");																										
 	}
 
 }
