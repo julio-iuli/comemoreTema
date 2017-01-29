@@ -26,67 +26,74 @@ public class Tema {
 		this.precoTema = precoTema;
 	}
 
+
 	public String getNomeTema() {
 		return nomeTema;
 	}
+
 
 	public void setNomeTema(String nomeTema) {
 		this.nomeTema = nomeTema;
 	}
 
+
 	public String getDescricaoTema() {
 		return descricaoTema;
 	}
+
 
 	public void setDescricaoTema(String descricaoTema) {
 		this.descricaoTema = descricaoTema;
 	}
 
-	public JFormattedTextField getDataTema() {
-		return dataTema;
-	}
-
-	public void setDataTema(JFormattedTextField jFormattedTextField) {
-		this.dataTema = jFormattedTextField;
-	}
 
 	public String getImagenTema() {
 		return imagenTema;
 	}
 
+
 	public void setImagenTema(String imagenTema) {
 		this.imagenTema = imagenTema;
 	}
 
-	public String isGeneroTema() {
+
+	public JFormattedTextField getDataTema() {
+		return dataTema;
+	}
+
+
+	public void setDataTema(JFormattedTextField dataTema) {
+		this.dataTema = dataTema;
+	}
+
+
+	public String getGeneroTema() {
 		return generoTema;
 	}
+
 
 	public void setGeneroTema(String generoTema) {
 		this.generoTema = generoTema;
 	}
 
-	public String isStatusTema() {
+
+	public String getStatusTema() {
 		return statusTema;
 	}
+
 
 	public void setStatusTema(String statusTema) {
 		this.statusTema = statusTema;
 	}
 
+
 	public double getPrecoTema() {
 		return precoTema;
 	}
 
+
 	public void setPrecoTema(double precoTema) {
 		this.precoTema = precoTema;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
+	

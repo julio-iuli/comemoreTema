@@ -6,7 +6,12 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-	private Connection conexao; 
+	private Connection conexao;
+	
+	public Conexao() throws SQLException{
+		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore","","root"); //Parêmetros da conexão - servidor(nomedobanco),senha,usuário(observer localhost:3306 veja que essa é a gestão de outra porta
+		
+	}
 
 	public Connection getConexao() {
 		return conexao;
@@ -15,10 +20,6 @@ public class Conexao {
 	public void setConexao(Connection conexao) {
 		this.conexao = conexao;
 	}
-
-	public Conexao() throws SQLException {
-
-		this.conexao = DriverManager.getConnection("jdbc:mysql://localhost:127.0.0.1:3306/comemore", "root", "root");																										
-	}
-
+	
+	
 }

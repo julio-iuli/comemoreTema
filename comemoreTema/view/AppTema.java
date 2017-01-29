@@ -4,17 +4,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.ButtonGroup;
+//import javax.swing.AbstractButton;
+//import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
+//import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePickerImpl;
+
 
 import model.Tema;
 import model.TemaDAO;
@@ -23,12 +25,14 @@ import model.TemaDAO;
 public class AppTema extends JFrame implements ActionListener{
 
 	private JLabel lblnomeTema,lbldescricaoTema,lblgeneroTema,lblstatusTema,lbldataTema,lblpreco;
-	private JTextField txtnomeTema,txtpreco;
+	private JTextField txtnomeTema,txtpreco,txtstatusTema,txtgeneroTema;
 	private JTextArea txtdescricaoTema;
-	private JRadioButton rdbativo,rdbinativo,rdbmasculino,rdbfeminino,rdbindefinido;
+	//private JRadioButton rdbativo,rdbinativo,rdbmasculino,rdbfeminino,rdbindefinido;
 	private JButton btnsalvar,btncancelar,btnlistar,btnimagen;
 	private JDatePickerImpl dataTema;
-	private ButtonGroup grupo;
+	//private ButtonGroup statusTema;
+	//private ButtonGroup generoTema;
+	
 	
 	
 	
@@ -60,29 +64,33 @@ public class AppTema extends JFrame implements ActionListener{
 		
 		lblstatusTema = new JLabel("Status");
 		lblstatusTema.setBounds(40,120,40,20);
-		rdbativo = new JRadioButton("Ativo");
+		txtstatusTema = new JTextField(10);
+		txtstatusTema.setBounds(15,140,100,20);
+		/*rdbativo = new JRadioButton("Ativo");
 		rdbativo.setBounds(1,140,60,20);
 		rdbinativo = new JRadioButton("Inativo");
 		rdbinativo.setBounds(57,140,70,20);
-		grupo = new ButtonGroup();
-		grupo.add(rdbativo);
-		grupo.add(rdbinativo);
-		
+		statusTema = new ButtonGroup();
+		statusTema.add(rdbativo);
+		statusTema.add(rdbinativo);
+		*/
 		//genero
 		
 		lblgeneroTema = new JLabel("Gênero");
 		lblgeneroTema.setBounds(230,120,50,20);
-		rdbmasculino = new JRadioButton("Masculino");
+		txtgeneroTema = new JTextField(10);
+		txtgeneroTema.setBounds(200,140,100,20);
+		/*rdbmasculino = new JRadioButton("Masculino");
 		rdbmasculino.setBounds(130,140,90,20);
 		rdbfeminino = new JRadioButton("Feminino");
 		rdbfeminino.setBounds(220,140,85,20);
 		rdbindefinido = new JRadioButton("Indefinido");
 		rdbindefinido.setBounds(305,140,90,20);
-		grupo = new ButtonGroup();
-		grupo.add(rdbmasculino);
-		grupo.add(rdbfeminino);
-		grupo.add(rdbindefinido);
-		
+		generoTema = new ButtonGroup();
+		generoTema.add(rdbmasculino);
+		generoTema.add(rdbfeminino);
+		generoTema.add(rdbindefinido);
+		*/
 		//datapicker
 		lbldataTema = new JLabel("Data da Compra");
 		lbldataTema.setBounds(430,120,120,20);
@@ -104,26 +112,14 @@ public class AppTema extends JFrame implements ActionListener{
 		btnlistar.setBounds(280,200,80,40);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		//incluindo na tela
 		add(lblnomeTema);add(txtnomeTema);
 		add(lbldescricaoTema);add(txtdescricaoTema);
-		add(lblstatusTema);add(rdbativo);add(rdbinativo);
-		add(lblgeneroTema);add(rdbmasculino);add(rdbfeminino);add(rdbindefinido);
+		add(lblstatusTema);//add(rdbativo);add(rdbinativo);
+		add(lblgeneroTema);//add(rdbmasculino);add(rdbfeminino);add(rdbindefinido);
 		add(lbldataTema);add(dataTema);add(lblpreco);add(txtpreco);
 		add(btnsalvar);add(btncancelar);add(btnimagen);add(btnlistar);
-		
-		
-		
-		
+		add(txtstatusTema);add(txtgeneroTema);
 		
 		
 		setVisible(true);
@@ -136,34 +132,24 @@ public class AppTema extends JFrame implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent clique) {
-		if(btnsalvar == clique.getSource()){
-			Tema temaClique = new Tema();
-			temaClique.setNomeTema(txtnomeTema.getText());
-			temaClique.setDescricaoTema(txtdescricaoTema.getText());
-			temaClique.setDataTema(dataTema.getJFormattedTextField());
-			temaClique.setStatusTema(rdbativo.getText());
-			temaClique.setStatusTema(rdbinativo.getText());
-			temaClique.setGeneroTema(rdbmasculino.getText());
-			temaClique.setGeneroTema(rdbfeminino.getText());
-			temaClique.setImagenTema(btnimagen.getText());
-			temaClique.setPrecoTema(Double.parseDouble(txtpreco.getText()));
+	public void actionPerformed(ActionEvent evento) {
+		if(btnsalvar == evento.getSource()){
+			Tema objTema = new Tema();
+			objTema.setNomeTema(txtnomeTema.getText());
+			objTema.setStatusTema(txtstatusTema.getText());//converter texto da caixinha pra double use o metodo Double.parseDouble
+			objTema.setDescricaoTema(txtdescricaoTema.getText());
+			objTema.setGeneroTema(txtgeneroTema.getText());
+			objTema.setDataTema(dataTema.getJFormattedTextField());
+			objTema.setPrecoTema(Double.parseDouble(txtpreco.getText()));
 			try{
 			TemaDAO dao = new TemaDAO();
-			dao.inserir(temaClique);
-			JOptionPane.showConfirmDialog(null,"Gravado com Sucesso");
-			}
-			catch (SQLException e){
-				JOptionPane.showConfirmDialog(null,"Erro ao Gravar");
+			dao.inserir(objTema);
+			JOptionPane.showConfirmDialog(null,"Gravado vivaaa");
+			}catch (SQLException e){
+				JOptionPane.showMessageDialog(null,"ERRO");
 				e.printStackTrace();
 				
 			}
-			
-			
 		}
-		
-		
 	}
-	
-
 }
