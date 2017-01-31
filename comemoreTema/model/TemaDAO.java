@@ -23,9 +23,9 @@ public class TemaDAO {
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 		
 		prepararSQL.setString(1,tema.getNomeTema());
-		prepararSQL.setString(2,tema.getStatusTema());
+		
 		prepararSQL.setString(3,tema.getDescricaoTema());
-		prepararSQL.setString(4,tema.getGeneroTema());
+		
 		//prepararSQL.setDate(5,java.sql.Date.valueOf(tema.getDataTema()));
 		prepararSQL.setDouble(6,tema.getPrecoTema());
 		prepararSQL.setString(7,tema.getImagenTema());
