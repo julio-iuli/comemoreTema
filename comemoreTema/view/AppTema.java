@@ -3,13 +3,10 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Vector;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,7 +31,7 @@ public class AppTema extends JFrame implements ActionListener{
 	private JDatePickerImpl dataTema;
 	private ButtonGroup statusTema;
 	private ButtonGroup generoTema;
-	private JTextField textField;
+	
 	
 	
 	
@@ -128,15 +125,8 @@ public class AppTema extends JFrame implements ActionListener{
 		setVisible(true);
 	}
 
-
 	
-	//Radio
-	
-	public AppTema(JTextField textField){
-        this.textField = textField;
-    }
-	
-
+	//Execução do Formulário
 	
 	public static void main(String[] args){
 		AppTema objTema = new AppTema();
@@ -148,36 +138,12 @@ public class AppTema extends JFrame implements ActionListener{
 		if(btnsalvar == evento.getSource()){
 			Tema objTema = new Tema();
 			objTema.setNomeTema(txtnomeTema.getText());
-			
-			JRadioButton rdbativo =(JRadioButton)evento.getSource();
-			if(rdbativo.getText().equals("Ativo")){
-				textField.setEditable(true);
-			}else{
-				textField.setEditable(false);
-			}
-			JRadioButton rdbinativo =(JRadioButton)evento.getSource();
-			if(rdbinativo.getText().equals("Inativo")){
-				textField.setEditable(true);
-			}else{
-				textField.setEditable(false);
-			}
-			JRadioButton rdbmasculino =(JRadioButton)evento.getSource();
-			if(rdbmasculino.getText().equals("Masculino")){
-				textField.setEditable(true);
-			}else{
-				textField.setEditable(false);
-			}
-			JRadioButton rdbfeminino =(JRadioButton)evento.getSource();
-			if(rdbfeminino.getText().equals("Ativo")){
-				textField.setEditable(true);
-			}else{
-				textField.setEditable(false);
-			}
+			objTema.setStatusTema(statusTema.getSelection().getActionCommand()); 
 			objTema.setDescricaoTema(txtdescricaoTema.getText());
+			objTema.setStatusTema(generoTema.getSelection().getActionCommand());
 			objTema.setDataTema(dataTema.getJFormattedTextField());
 			objTema.setPrecoTema(Double.parseDouble(txtpreco.getText()));
-			
-			try{
+						try{
 			TemaDAO dao = new TemaDAO();
 			dao.inserir(objTema);
 			JOptionPane.showConfirmDialog(null,"Gravado com Sucesso");

@@ -7,11 +7,9 @@ import java.sql.SQLException;
 
 
 public class Conexao {
-	private Connection conexao;
-
 	public Connection getConexao() {
 		try {
-			return conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore","root","");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/comemore","root","root");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;

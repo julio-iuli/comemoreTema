@@ -6,15 +6,15 @@ public class Tema {
 
 	private String nomeTema,descricaoTema,imagenTema;
 	private JFormattedTextField dataTema;
-	private char generoTema,statusTema;
+	private String generoTema,statusTema;
 	private double precoTema;
 	
 	public Tema(){
 		
 	}
 
-	public Tema(String nomeTema, String descricaoTema, String imagenTema, JFormattedTextField dataTema, char generoTema,
-			char statusTema, double precoTema) {
+	public Tema(String nomeTema, String descricaoTema, String imagenTema, JFormattedTextField dataTema,
+			String generoTema, String statusTema, double precoTema) {
 		super();
 		this.nomeTema = nomeTema;
 		this.descricaoTema = descricaoTema;
@@ -57,19 +57,19 @@ public class Tema {
 		this.dataTema = dataTema;
 	}
 
-	public char getGeneroTema() {
+	public String getGeneroTema() {
 		return generoTema;
 	}
 
-	public void setGeneroTema(char generoTema) {
+	public void setGeneroTema(String generoTema) {
 		this.generoTema = generoTema;
 	}
 
-	public char getStatusTema() {
+	public String getStatusTema() {
 		return statusTema;
 	}
 
-	public void setStatusTema(char statusTema) {
+	public void setStatusTema(String statusTema) {
 		this.statusTema = statusTema;
 	}
 
@@ -80,5 +80,12 @@ public class Tema {
 	public void setPrecoTema(double precoTema) {
 		this.precoTema = precoTema;
 	}
+
+	
+
+
+
+
+
 
 }	
