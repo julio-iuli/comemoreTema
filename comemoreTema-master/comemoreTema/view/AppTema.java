@@ -120,7 +120,15 @@ public class AppTema extends JFrame implements ActionListener{
 	
 	//************* OUTROS MÉTODOS AQUI  **************//
 	
-	
+	public void limpar(){
+		txtnomeTema.setText("");
+		txtdescricaoTema.setText("");
+		txtpreco.setText("");
+		status.setSelectedItem("");
+		genero.setSelectedItem("");
+		
+		
+	}
 	
 	
 	
@@ -136,6 +144,9 @@ public class AppTema extends JFrame implements ActionListener{
 	// Pegando os dados 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
+		if(evento.getSource()== btncancelar){
+			limpar();
+		}
 		if(btnsalvar == evento.getSource()){
 			Tema objTema = new Tema();
 			objTema.setNome(txtnomeTema.getText());
