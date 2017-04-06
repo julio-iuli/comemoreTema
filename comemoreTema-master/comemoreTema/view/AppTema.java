@@ -99,9 +99,10 @@ public class AppTema extends JFrame implements ActionListener{
 		btncancelar.addActionListener(this);
 		btnimagen = new JButton("Imagem");
 		btnimagen.setBounds(190,200,80,40);
+		btnimagen.addActionListener(this);
 		btnlistar = new JButton("Listar");
 		btnlistar.setBounds(280,200,80,40);
-		btnlistar.addActionListener(this);
+		//btnlistar.addActionListener(this);
 				
 		//incluindo na tela
 		add(lblnomeTema);add(txtnomeTema);
@@ -126,11 +127,15 @@ public class AppTema extends JFrame implements ActionListener{
 		txtpreco.setText("");
 		status.setSelectedItem("");
 		genero.setSelectedItem("");
-		
-		
+			
 	}
 	
+	// Chamando a Tela de Imagem
 	
+	public void telaImagen(){
+	    Imagen frame = new Imagen(); frame.setVisible(true); 
+	}
+		
 	
 	//************************************************//
 	
@@ -147,6 +152,10 @@ public class AppTema extends JFrame implements ActionListener{
 		if(evento.getSource()== btncancelar){
 			limpar();
 		}
+		if(evento.getSource() == btnimagen){
+			telaImagen();
+		}
+		
 		if(btnsalvar == evento.getSource()){
 			Tema objTema = new Tema();
 			objTema.setNome(txtnomeTema.getText());
@@ -158,7 +167,7 @@ public class AppTema extends JFrame implements ActionListener{
 			try{
 			TemaDAO dao = new TemaDAO();
 			dao.inserir(objTema);
-			JOptionPane.showConfirmDialog(null,"Gravado com Sucesso");
+			JOptionPane.showMessageDialog(null,"Gravado com Sucesso");
 			}catch (SQLException e){
 				JOptionPane.showMessageDialog(null,"ERRO");
 				e.printStackTrace();

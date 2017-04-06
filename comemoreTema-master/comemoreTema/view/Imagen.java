@@ -16,42 +16,28 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 public class Imagen extends JFrame {
-	
-	
-	  private  JButton button ;
-	  private  JButton button2;
+		
+	  private  JButton salvarimg ;
+	  private  JButton procurar;
 	  private  JLabel label;
-	  private  JTextField textID;
-	  private  JTextField textNAME;
-	  private  JTextArea area;
 	  private  String s;
 	  
 	  public Imagen(){
 		  super("Inserir Imagem do Tema");
 		  
-		  button = new JButton("Salvar");
-		  button.setBounds(200,300,100,40);
 		  
-		  button2 = new JButton("Procurar");
-		  button2.setBounds(80, 300, 100, 40);
+		  salvarimg = new JButton("Salvar");
+		  salvarimg.setBounds(300,200,100,40);
 		  
-		  textID = new JTextField("ID");
-		  textID.setBounds(320,290,100,20);
-
-		  textNAME = new JTextField("Name");
-		  textNAME.setBounds(320,330,100,20);
-
-		  area = new JTextArea("DESCRIPTION",100, 100);
-		  
-		  JScrollPane pane = new JScrollPane(area);
-		  pane.setBounds(450, 270, 200, 100);
-		  
+		  procurar = new JButton("Procurar");
+		  procurar.setBounds(190, 200, 100, 40);
+		  		  
 		  label = new JLabel();
 		  label.setBounds(10,10,670,250);   
 		  
 		  
-		//button to browse the image into jlabel
-		  button2.addActionListener(new ActionListener(){
+		//button to browse the image into Jlabel
+		  procurar.addActionListener(new ActionListener(){
 		  @Override
 		  public void actionPerformed(ActionEvent e){
 		         JFileChooser fileChooser = new JFileChooser();
@@ -72,34 +58,30 @@ public class Imagen extends JFrame {
 		    });
 		  
 		  //button to insert image and some data into mysql database
-		    button.addActionListener(new ActionListener(){
+		    salvarimg.addActionListener(new ActionListener(){
 		    	
 		        public void actionPerformed(ActionEvent e){
 		        try{
 		        Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/db_images","root","root");
-		        PreparedStatement ps = con.prepareStatement("insert into myimages(ID,Name,Description,Image) values(?,?,?,?)");
+		        PreparedStatement ps = con.prepareStatement("insert into myimages(Image) values(?)");
 		        InputStream is = new FileInputStream(new File(s));
-		                ps.setString(1, textID.getText());
-		                ps.setString(2, textNAME.getText());
-		                ps.setString(3, area.getText());
-		                ps.setBlob(4,is);
+		                ps.setBlob(1,is);
 		                ps.executeUpdate();
-		                JOptionPane.showMessageDialog(null, "Data Inserted");
+		                JOptionPane.showMessageDialog(null, "Gravada Com Sucesso");
 		            }catch(Exception ex){
 		                ex.printStackTrace();
 		            }
 		        }
 		     });
-
+		    
+		    //Adcionando elementos na tela
 		     add(label);
-		     add(textID);
-		     add(textNAME);
-		     add(pane);
-		     add(button);
-		     add(button2);
+		     add(salvarimg);
+		     add(procurar);
 		     setLayout(null);
 		     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		     setSize(700,420);
+		     setSize(600,280);
+		     setLocationRelativeTo(null);
 		     setVisible(true);
 		     }
 		     
@@ -140,3 +122,6 @@ public class Imagen extends JFrame {
 
 
 }//fim da classe
+
+
+
