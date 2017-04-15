@@ -1,5 +1,5 @@
 package view;
-//Esse daqui
+//Trabalhando em 14/04/2017
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Console;
@@ -25,6 +25,7 @@ import com.sun.glass.events.KeyEvent;
 
 import model.Tema;
 import model.TemaDAO;
+
 
 
 public class AppTema extends JFrame implements ActionListener{
@@ -102,7 +103,7 @@ public class AppTema extends JFrame implements ActionListener{
 		btnimagen.addActionListener(this);
 		btnlistar = new JButton("Listar");
 		btnlistar.setBounds(280,200,80,40);
-		//btnlistar.addActionListener(this);
+		btnlistar.addActionListener(this);
 				
 		//incluindo na tela
 		add(lblnomeTema);add(txtnomeTema);
@@ -137,7 +138,15 @@ public class AppTema extends JFrame implements ActionListener{
 	}
 		
 	
+	//Chamar a Tela Listar
+	
+	public void listarTema() throws Exception {
+		ListarTema frame = new ListarTema(); frame.setVisible(true);
+	}
+	
 	//************************************************//
+	
+	
 	
 	//Instanciando a classe principal
 	
@@ -146,14 +155,26 @@ public class AppTema extends JFrame implements ActionListener{
 		
 	}
 	
-	// Pegando os dados 
+	// Fazendo todas as ações(Salvar,Cancelar,Listar,e chamar a imagem
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		if(evento.getSource()== btncancelar){
 			limpar();
 		}
+		
 		if(evento.getSource() == btnimagen){
 			telaImagen();
+		}
+		
+		if(evento.getSource() == btnlistar){
+			try {
+				listarTema();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 		}
 		
 		if(btnsalvar == evento.getSource()){

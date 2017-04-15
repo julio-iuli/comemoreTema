@@ -3,8 +3,9 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import model.Conexao;
 
 
 
@@ -16,6 +17,7 @@ public class TemaDAO {
 	private PreparedStatement prepararSQL;
 	private ResultSet resultado;
 	
+	// Inserindo
 	
 	public TemaDAO()throws SQLException {
 		this.conexao = new Conexao();
@@ -34,41 +36,68 @@ public class TemaDAO {
 		prepararSQL.close();
 			
 	}
+	
 
 	//Listando
 	
-	/*public void listar(Tema tema)throws SQLException{
-		String sql = "SELECT `id`, `nome`, `status`, `descricao`, `genero`, `datacompra`, `preco`, `imgtema`, `idcategoria` FROM `tema` values (?,?,?,?,?,?)";
+	public DefaultTableModel listar()throws SQLException {
 		DefaultTableModel tabela = new DefaultTableModel();
+		
+		String sql = "select id,nome,status,descricao,genero,datacompra,preco,imgtema,idcategoria from tema";
+		
+		tabela.addColumn("id");
 		tabela.addColumn("Nome");
 		tabela.addColumn("Status");
 		tabela.addColumn("Descrição");
 		tabela.addColumn("Gênero");
-		tabela.addColumn("Preço");
 		tabela.addColumn("Data de Compra");
+		tabela.addColumn("Preço");
+		tabela.addColumn("Imagem");
+		tabela.addColumn("Categoria");
 		
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 		
+		String titulo[] = {"Id","Nome","Status","Descrição","Gênero","Data da Compra","Preço","Imagem do Tema","Categoria(ID)"};
+		
+		tabela.addRow(titulo);
+				
 		resultado = prepararSQL.executeQuery();
 		
 		while(resultado.next()){
-		String[] linha = {
-		resultado.getString("nome")
-		};
 		
-		tabela.addRow(linha);
-						
+			String[] linha = {  resultado.getString("id"),
+								resultado.getString("nome"),
+								resultado.getString("status"),
+								resultado.getString("descricao"),
+								resultado.getString("genero"),
+								resultado.getString("datacompra"),
+								resultado.getString("preco"),
+								resultado.getString("imgtema"),
+								resultado.getString("idcategoria"),
+			};
+			
+			tabela.addRow(linha);
+			
 		}
-		
+			
 		prepararSQL.close();
 				
-		return tabela;
-	}
-		*/
-	
+		
+		return tabela;	
+		}
+		
+		
 
 
+
 	
-//fim da classe
-}
+	
+
+		
+		
+
+
+}//Fim da Classe
+		
+		
 
