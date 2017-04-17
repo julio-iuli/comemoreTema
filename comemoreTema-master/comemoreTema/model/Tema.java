@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Tema{
     
     private int id;
-    private String nome,descricao, status,genero,imgTema;//observar imgTema porque pode ser outra classe no futuro.
+    private String nome,descricao, status,genero,imgTema;
 	LocalDate dataCompra;
     private double preco;
     

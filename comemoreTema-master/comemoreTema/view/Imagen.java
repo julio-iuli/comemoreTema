@@ -79,7 +79,7 @@ public class Imagen extends JFrame {
 		     add(salvarimg);
 		     add(procurar);
 		     setLayout(null);
-		     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		     //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		     setSize(600,280);
 		     setLocationRelativeTo(null);
 		     setVisible(true);

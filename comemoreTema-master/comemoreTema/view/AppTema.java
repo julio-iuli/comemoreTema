@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 
 import org.jdatepicker.impl.JDatePickerImpl;
 
-import com.mysql.fabric.xmlrpc.base.Array;
+//import com.mysql.fabric.xmlrpc.base.Array;
 import com.sun.glass.events.KeyEvent;
 
 import model.Tema;

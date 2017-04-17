@@ -1,10 +1,14 @@
 package model;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 import model.Conexao;
 
 
@@ -57,9 +61,10 @@ public class TemaDAO {
 		
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
 		
-		String titulo[] = {"Id","Nome","Status","Descrição","Gênero","Data da Compra","Preço","Imagem do Tema","Categoria(ID)"};
+		String titulo[] = {"Id","Nome","Status","Descrição","Gênero","Data da Compra","Preço R$","Imagem do Tema","Categoria(ID)"};
 		
 		tabela.addRow(titulo);
+		
 				
 		resultado = prepararSQL.executeQuery();
 		
@@ -85,6 +90,21 @@ public class TemaDAO {
 		
 		return tabela;	
 		}
+	
+		//Excluir
+	
+	public void excluir(Tema tema) throws SQLException{
+		String sql = "delete from tema where id = ?";
+		
+		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
+		prepararSQL.setInt(1,tema.getId());
+		prepararSQL.execute();
+		prepararSQL.close();
+	}
+	
+	
+	
+	
 		
 		
 
