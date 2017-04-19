@@ -22,12 +22,13 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import model.TemaDAO;
 import model.Tema;
 import model.Conexao;
 
-public class ListarTema extends JFrame implements ActionListener,MouseListener {
+public class ListarTema extends JFrame implements ActionListener{
 
 	private JTable tabela;
 	private JButton btnExcluir,btnAtualizar;
@@ -50,7 +51,6 @@ public class ListarTema extends JFrame implements ActionListener,MouseListener {
 		TemaDAO dao = new TemaDAO();
 		tabela = new JTable(dao.listar());
 		tabela.setBounds(0,0,800,600);
-		tabela.setForeground(Color.BLUE);
 		add(tabela);
 
 		
@@ -81,9 +81,9 @@ public class ListarTema extends JFrame implements ActionListener,MouseListener {
 
 //************************************************************************//
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		// TODO Auto-generated method stub
 		if(evento.getSource() == btnExcluir){
 			try{
 				Tema tema = new Tema();
@@ -91,14 +91,20 @@ public class ListarTema extends JFrame implements ActionListener,MouseListener {
 				String mensagemTema = "Deseja excluir o Tema ";
 				
 				int selectedOption = JOptionPane.showConfirmDialog(null,mensagemTema,"Confirma",JOptionPane.YES_NO_OPTION);
-				
-				
+								
 				if (selectedOption == JOptionPane.YES_OPTION) {
-				    
-				
-				TemaDAO dao = new TemaDAO();
-				dao.excluir(tema);
-				
+					Tema objtema = new Tema();
+					DefaultTableModel listar = new DefaultTableModel();
+					int linha = tabela.getSelectedRow();
+					int listarLinha = tabela.convertColumnIndexToModel(linha);
+					try {
+						TemaDAO dao = new TemaDAO();
+						dao.excluir(objtema);
+						JOptionPane.showMessageDialog(null,"Deletado com Sucesso");
+					}catch (SQLException e){
+						JOptionPane.showMessageDialog(null,"ERRO");
+						e.printStackTrace();
+					}					
 				setVisible(false); //Some com a tabela
 				dispose(); //Destroi a tabela
 				
@@ -111,102 +117,14 @@ public class ListarTema extends JFrame implements ActionListener,MouseListener {
 				e.printStackTrace();
 			}
 		}
-	}		 
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-							
-		Point point = e.getPoint();
-		int row,column, colunaNome;
-		row 	= tabela.rowAtPoint(point);
-		column 	= 0;
-		colunaNome = 1;
-		     
-		String id;
-		String nome;
-		
-		id = Integer.parseInt(id);
-		
-	    id = "" +tabela.getValueAt(row,column);
-		nome = "" +tabela.getValueAt(row,colunaNome);
-		nome = nome;
-				      
- }
-
-	         
-		
-	
-
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
-
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
 	
 	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 
 	
 

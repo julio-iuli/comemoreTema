@@ -91,9 +91,11 @@ public class TemaDAO {
 		return tabela;	
 		}
 	
+	
 		//Excluir
 	
 	public void excluir(Tema tema) throws SQLException{
+		
 		String sql = "delete from tema where id = ?";
 		
 		prepararSQL = this.conexao.getConexao().prepareStatement(sql);
@@ -101,6 +103,7 @@ public class TemaDAO {
 		prepararSQL.execute();
 		prepararSQL.close();
 	}
+	
 	
 	
 	
