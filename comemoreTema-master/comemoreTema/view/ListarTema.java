@@ -73,7 +73,7 @@ public class ListarTema extends JFrame implements ActionListener{
 	}
 	
 	
-	//Instanciando a classe (só assim ela aparece!!!)
+	//Instanciando a classe (sï¿½ assim ela aparece!!!)
 	public static void main(String[] args) throws SQLException{
 		ListarTema objListarTema = new ListarTema();
 		
@@ -94,11 +94,14 @@ public class ListarTema extends JFrame implements ActionListener{
 								
 				if (selectedOption == JOptionPane.YES_OPTION) {
 					Tema objtema = new Tema();
-					DefaultTableModel listar = new DefaultTableModel();
-					int linha = tabela.getSelectedRow();
-					int listarLinha = tabela.convertColumnIndexToModel(linha);
+					//DefaultTableModel listar = new DefaultTableModel();
+					int linha = Integer.parseInt((String) tabela.getValueAt(tabela.getSelectedRow(), 0));
+					//JOptionPane.showMessageDialog(null, linha);
+					//int listarLinha = tabela.convertColumnIndexToModel(linha);
+					//JOptionPane.showMessageDialog(null, tabela);
 					try {
 						TemaDAO dao = new TemaDAO();
+						objtema.setId(linha);
 						dao.excluir(objtema);
 						JOptionPane.showMessageDialog(null,"Deletado com Sucesso");
 					}catch (SQLException e){

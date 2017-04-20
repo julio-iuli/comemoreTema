@@ -9,7 +9,7 @@ public class Conexao {
 	private Connection conexao;
 	
 	public Conexao() throws SQLException{
-		this.conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/comemore","root","root"); //Parêmetros da conexão - servidor(nomedobanco),senha,usuário(observer localhost:3306 veja que essa é a gestão de outra porta
+		this.conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1/comemore","aluno","senac"); //Parï¿½metros da conexï¿½o - servidor(nomedobanco),senha,usuï¿½rio(observer localhost:3306 veja que essa ï¿½ a gestï¿½o de outra porta
 		
 	}
 

@@ -55,7 +55,7 @@ public class AppTema extends JFrame implements ActionListener{
 		txtnomeTema.setBounds(88,1,490,20);
 		
 		//descricao do tema
-		lbldescricaoTema = new JLabel("Descrição do Tema");
+		lbldescricaoTema = new JLabel("Descriï¿½ï¿½o do Tema");
 		lbldescricaoTema.setBounds(1,60,110,20);
 		txtdescricaoTema = new JTextArea(50,50);
 		txtdescricaoTema.setBounds(115,35,460,80);
@@ -71,11 +71,11 @@ public class AppTema extends JFrame implements ActionListener{
 		status.setBounds(40,140,65,20);
 				
 		//genero
-		lblgeneroTema = new JLabel("Gênero");
+		lblgeneroTema = new JLabel("Gï¿½nero");
 		lblgeneroTema.setBounds(230,120,50,20);
 		
 		//Combo box genero
-		String[] array_genero = {"","Masculino","Feminino","Indefinido"};
+		String[] array_genero = {"","M","F","U"};
 		genero = new JComboBox(array_genero);
 		genero.setSelectedIndex(0);
 		genero.setBounds(230,140,100,20);
@@ -86,7 +86,7 @@ public class AppTema extends JFrame implements ActionListener{
 		lbldataCompra.setBounds(430,120,120,20);
 		dataCompra = JulioDatePicker.criar(1980,true);
 		dataCompra.setBounds(410,140,150,30);
-		lblpreco = new JLabel("Preço do Tema");
+		lblpreco = new JLabel("Preï¿½o do Tema");
 		lblpreco.setBounds(440,175,120,20);
 		txtpreco = new JTextField();
 		txtpreco.setBounds(410,200,155,20);
@@ -120,7 +120,7 @@ public class AppTema extends JFrame implements ActionListener{
 	}
 
 	
-	//************* OUTROS MÉTODOS AQUI  **************//
+	//************* OUTROS Mï¿½TODOS AQUI  **************//
 	
 	public void limpar(){
 		txtnomeTema.setText("");
@@ -155,7 +155,7 @@ public class AppTema extends JFrame implements ActionListener{
 		
 	}
 	
-	// Fazendo todas as ações(Salvar,Cancelar,Listar,e chamar a imagem
+	// Fazendo todas as aï¿½ï¿½es(Salvar,Cancelar,Listar,e chamar a imagem
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		if(evento.getSource()== btncancelar){
